@@ -1,1 +1,382 @@
 # Hoang-Thanh-Binh
+#hamgoichuongtrinh
+def goiChuongTrinh():
+    print(' '*30,'-','-'*50,'-')
+    print(' '*30,'|','*'*50,'|')
+    print(' '*30,'|','{:*^50} |'.format("Chương trình học thông minh"))
+    print(' '*30,'|','*'*50,'|')
+    print(' '*30,'-','-'*50,'-')
+    print(' ')
+    print(' '*12,'-','-'*87,'-')
+    print(' '*12,'|','{:=^87} |'.format('MENU'))
+    print(' '*12,'-','-'*87,'-')
+    print(' '*12,'-','-'*87,'-')
+    print(' '*12,'|','{:' '<87} |'.format('Xin vui lòng chọn'))
+    print(' '*12,'|','{:' '<87} |'.format('1. Xem lịch'))
+    print(' '*12,'|','{:' '<87} |'.format('2. Tính lương'))
+    print(' '*12,'|','{:' '<87} |'.format('3. Xem lương'))
+    print(' '*12,'|','{:' '<87} |'.format('4. Xem thông tin nhân viên'))
+    print(' '*12,'|','{:' '<87} |'.format('5. Tính điểm của học sinh'))
+    print(' '*12,'|','{:' '<87} |'.format('6. Thông tin của tôi'))
+    print(' '*12,'|','{:' '<87} |'.format('7.Giải phương trình'))
+    print(' '*12,'|','{:' '<87} |'.format('8.Dừng chương trình'))
+    print(' '*12,'-','-'*87,'-')
+#HÀM XEM LỊCH
+def timThang(thang):
+    if thang in [1,3,5,7,8,10,12]:
+        print(f'Tháng {thang} có 31 ngày!')
+    elif thang !=2:
+        print(f'Tháng {thang} có 30 ngày!')
+    else:
+        while True:
+            try:
+                nam=int(input('Bạn muốn xem tháng 2 của năm bao nhiêu?'))
+                if nam != 0:
+                    break
+                else:
+                    print('Không có năm 0 mời bạn nhập lại năm')
+            except ValueError:
+                print('Xin vui lòng nhập năm bằng ký tự số')
+        if (nam%4==0 and nam%100!=0) or (nam%100==0 and nam%400==0):
+            print(f'Tháng {thang} năm {nam} có 29 ngày!')
+        else:
+            print(f'Tháng {thang} năm {nam} có 28 ngày!')
+#HÀM TÍNH TIỀN LƯƠNG 
+def tinhLuong(sogio,soluongcua1gio):
+    if sogio <= 40:
+        luong=(sogio*soluongcua1gio)
+        return luong
+    else:
+        luongthem=(sogio-40)*(soluongcua1gio*1.5)
+        luong=(40*soluongcua1gio)+(luongthem)
+        return luong 
+#HÀM SẮP XẾP LƯƠNG NHÂN VIÊN
+def sapXep(a):
+    for i in range (len(a)):
+        for j in range(len(a)-1):
+            if a[j][1]>a[j+1][1]:
+                b=a[j]
+                a[j]=a[j+1]
+                a[j+1]=b
+    return a
+#HÀM CẮT TÊN
+def catTen(name):
+    ho_tenlot=''
+    ten=''
+    s1=name
+    s2=''
+    s2+=s1[0].upper()
+    for i in range (1,len(s1)):
+        if s1[i]== ' ':
+            return_daucach=i
+        if s1[i-1]== ' ':
+            s2+=s1[i].upper()
+            continue
+        s2+=s1[i]
+    ho_tenlot=s2[0:return_daucach]
+    ten=s2[return_daucach+1:len(s1)]
+    print(f'Họ và tên đầy đủ của nhân viên là {s2}')
+    print(f'Họ và tên lót của nhân viên là: {ho_tenlot}')
+    print(f'Tên của nhân viên là: {ten}')
+#HÀM TÍNH ĐIỂM TRUNG BÌNH 
+def tinhDiemTrungBinh(diem,heso):
+    tongheso=0
+    tu=0
+    for i in range(len(diem)):
+        tongheso+=heso[i]
+        tu+=diem[i]*heso[i]
+    diemtrungbinh=tu/tongheso
+    tongsomon=len(diem)
+    print(f'Tổng số môn là {tongsomon}')
+    print(f'Tổng hệ số là {tongheso}')
+    print(f'Điểm trung bình bạn cần tính là {diemtrungbinh}')
+#HÀM GIẢI PHƯƠNG TRÌNH
+import math
+def phuongTrinhBac1(a,b):
+    if a == 0 and b == 0:
+        print('Phương trình có vô số nghiệm')
+    elif a == 0 and b != 0:
+        print('Phương trình vô nghiệm')
+    else:
+        x = (-b)/a
+        print(f'Phương trình có nghiệm là {x}')
+def phuongTrinhBac2(a,b,c):
+    d = (b**2)-(4*a*c)
+    print(f'Delta có giá trị là {d}')
+    if d < 0:
+        print('Phương trình vô nghiệm')
+    else:
+        nghiem1 = (-b+math.sqrt(d)/(2*a))
+        nghiem2 = (-b-math.sqrt(d)/(2*a))
+        nghiemkep = (-b)/(2*a)
+        if d == 0:
+            print(f'Phương trình có nghiệm kép là {nghiemkep}')
+        elif d > 0:
+            print ('Phương trình có 2 nghiệm')
+            print(f'Nghiệm 1 là {nghiem1}, nghiệm 2 là {nghiem2}')
+def phuongTrinhBac3(a,b,c,d):
+    D = (b**2)-3*a*c
+    k = (9*a*b*c -2*(b**3)-27*(a**2)*d)/(2*math.sqrt(abs(D)**3))
+    print('Delta có giá trị là', D)
+    if D < 0:
+        print('Phương trình vô nghiệm')
+    else:
+        h1 = (math.cos(math.acos(k)/3))
+        h2 = (math.cos((math.acos(k)/3)-(2*math.pi)/3))
+        h3 = (math.cos((math.acos(k)/3)+(2*math.pi)/3))
+        x1 = ((2*math.sqrt(D))*h1-b)/(3*a)
+        x2 = ((2*math.sqrt(D))*h2-b)/(3*a)
+        x3 = ((2*math.sqrt(D))*h3-b)/(3*a)
+        m1 = (abs(k)+(math.sqrt(k**2)-1))**1/3
+        m2 = (abs(k)+(math.sqrt(k**2)-1))**1/3
+        nghiemkep=(((math.sqrt(D))*abs(k))/3*a*k)*(m1+m2)
+        nghiemboi=(-b+(b**3-27*(a**2)*d)**1/3)/(3*a)
+        if d == 0 :
+            print('Phương trình có nghiệm bội ')
+            print(f'Nghiệm của phương trình là {nghiemboi}')
+        elif d > 0:
+            if abs(k) <= 1:
+                print('Phương trình trên có ba nghiệm phân biệt')
+                print(f'Nghiệm thứ nhất có giá trị là {x1}')
+                print(f'Nghiệm thứ hai có giá trị là {x2}')
+                print(f'Nghiệm thứ ba có giá trị là {x3}')
+            elif abs(k) > 1:
+                print('Phương trình trên có một nghiệm duy nhất(nghiệm kép)')
+                print(f'Nghiệm của phương trình là {nghiemkep}')
+#goichuongtrinh
+while True:
+    goiChuongTrinh()
+    while True:
+        try:
+            m = int(input('=Bạn muốn làm gì?'))
+            if m in [1,2,3,4,5,6,7,8]:
+                break
+            else:
+                print('Menu của tôi chỉ có 8 chương trình, hãy nhập lại số tương ứng với 6 chương trình trên')
+        except ValueError:
+            print('Vui lòng nhập số tương ứng trên MENU')
+    #CHƯƠNG TRÌNH 1 XEM LỊCH
+    if m == 1:
+        print(' '*12,'|','{:=^87} |'.format('Chương trình xem lịch'))
+        while True:
+            while True:
+                try:
+                    timthang = int(input('Bạn muốn xem tháng bao nhiêu?:'))
+                    if 0<timthang<13:
+                        break
+                    print('Chỉ có từ tháng 1 đến tháng 12)mời bạn nhập lại tháng')
+                except ValueError:
+                    print('Vui lòng nhập số')
+            timThang(timthang)            
+            thoat_xemlich=input('Bạn có muốn thoát chương trình không, nhấn X để thoát,nhấn phím khác để tiếp tục chương trình')
+            if thoat_xemlich == 'X' or thoat_xemlich == 'x':
+                break     
+    #CHƯƠNG TRÌNH 2 CHƯƠNG TRÌNH XEM LƯƠNG
+    elif m == 2:
+        print(' '*12,'|','{:=^87} |'.format('Chương trình tính lương'))
+        menhgia=input('Nhập đơn vị tiền của bạn:')
+        while True:
+            while True:
+                try:
+                    sogiolam=int(input('nhập số giờ làm của bạn:'))
+                    if sogiolam>0:
+                        break
+                    else:
+                        print('Hãy nhập số giờ lớn hơn 0')
+                except ValueError:
+                    print('Vui lòng nhập số')
+            while True:  
+                try:  
+                    tienluonglam1g=int(input('nhập số lương trong một giờ của bạn vào đây:'))
+                    if tienluonglam1g >= 0:
+                         break
+                    else:
+                        print('Hãy nhập lại số lương của bạn:')
+                except ValueError:
+                    print('Hãy nhập số giờ dương')
+            luongin=tinhLuong(sogiolam,tienluonglam1g)
+            lenl=len(str(luongin))
+            luongthat=str(luongin)
+            count=0
+            luonginramanhinh=''
+            for i in range (lenl-1,-1,-1):
+                count+=1
+                luonginramanhinh = luongthat[i]+luonginramanhinh
+                if count == 3 and i!=0:
+                    luonginramanhinh = '.'+luonginramanhinh
+                    count=0
+            print('Lương của bạn là',luonginramanhinh,menhgia)
+            Nhaplai = input('Bạn có muốn thoát chương trình không?nhấn X để thoát,nhấn phím khác để tiếp tục chương trình:')
+            if Nhaplai == 'X' or Nhaplai == 'x':
+                break
+    #CHƯƠNG TRÌNH 3 CHƯƠNG TRÌNH SẮP XẾP LƯƠNG NHÂN VIÊN
+    elif m==3:
+        print(' '*12,'|','{:=^87} |'.format('Chương trình sắp xếp lương nhân viên'))
+        while True:
+            while True:
+                try:
+                    soluongnhanvien=int(input('Bạn muốn sắp xếp bao nhiêu nhân viên:'))
+                    if soluongnhanvien >=2:
+                        break
+                    else:
+                        print('Bạn phải nhập từ 2 nhân viên trở lên tôi mới sắp xếp cho bạn')
+                except ValueError:
+                    print('Vui lòng nhập số lượng nhân viên bằng kí tự số')
+            list=[]
+            for i in range (soluongnhanvien):
+                list1 = []
+                tennhanvien = input(f'Nhập tên nhân viên {i + 1}: ')
+                list1.append(tennhanvien)
+                while True:
+                    try:
+                        luongnhanvien = int(input(f'Nhập lương của nhân viên {tennhanvien}: '))
+                        if luongnhanvien > 0:
+                            break
+                        else:
+                            print('Nhập lương dương')
+                    except ValueError:
+                        print('Nhập số')
+                list1.append(luongnhanvien)
+                lenl=len(str(luongnhanvien))
+                luongthat=str(luongnhanvien)
+                count=0
+                luonginramanhinh=''
+                for i in range(lenl-1,-1,-1):
+                    count+=1
+                    luonginramanhinh = luongthat[i]+luonginramanhinh
+                    if count == 3 and i!=0 :
+                        luonginramanhinh = '.' + luonginramanhinh
+                        count = 0 
+                list1.append(luonginramanhinh)
+                list.append(list1)
+            inramanhinh=sapXep(list)
+            for i in range (len(inramanhinh)):
+                print(inramanhinh[i][0],inramanhinh[i][2])
+            dung = input('Bạn có muốn dừng chương trình không, nhấn X để dừng chương trình')
+            if dung =="X" or dung == 'x':
+                break
+    #CHƯƠNG TRÌNH CẮT TÊN
+    elif m==4:
+        print(' '*12,'|','{:=^87} |'.format('Chương trình cắt tên'))
+        while True:
+            while True:
+                ten=input('Nhập tên vào đây:').strip()
+                if " "  in ten:
+                    break
+                else:
+                    print('Xin vui lòng nhập đủ họ tên')
+            catTen(ten)
+            dung = input('Bạn có muốn dừng chương trình không, nhấn X để dừng chương trình')
+            if dung == 'X' or dung == 'x':
+                break
+    #CHƯƠNG TRÌNH TÍNH ĐIỂM TRUNG BÌNH
+    elif m==5:
+        print(' '*12,'|','{:=^87} |'.format('Chương trình tính điểm trung bình'))
+        Diem=[]
+        he_so=[]
+        while True:
+            while True:
+                try:
+                    somon=int(input('Bạn muốn tính bao nhiêu môn:'))
+                    if somon>0:
+                        break
+                    else:
+                        print('Xin vui lòng nhập số môn bạn muốn tính')
+                except ValueError:
+                    print('Nhập số lượng bằng ký tự số')
+            for i in range (somon):
+                tenmon=input('Nhập môn bạn cần tính:')
+                while True:
+                    try:
+                        point=float(input(f'Nhập điểm môn {tenmon} vào đây:'))
+                        if 0<=point<=10:
+                            Diem.append(point)
+                            break
+                        else:
+                            print(f'Nhập lại điểm môn {tenmon}')
+                    except ValueError:
+                        print('Nhập lại điểm bằng ký tự số')
+                while True:
+                    print('Nhập các hệ số sau:1,1.5,2,2.5,3')
+                    try:
+                        coefficient=float(input(f'Nhập hệ số của {tenmon}:'))
+                        if coefficient in [1,1.5,2,2.5,3]:
+                            he_so.append(coefficient)
+                            break
+                        else:
+                            print('nhập các hệ số chúng tôi đã hướng dẫn')
+                    except ValueError:
+                        print('Hệ số phải nhập bằng số chứ,nhập lại hệ số đi tôi sẽ tính điểm cho bạn')
+            print(tinhDiemTrungBinh(Diem,he_so))
+            dung = input('Bạn có muốn dừng chương trình không, nhấn X để dừng chương trình')
+            if dung == 'X' or dung == 'x':
+                break
+#THÔNG TIN CỦA TÔI
+    elif m == 6:
+        print('='*20,'Thông tin của tôi','='*20)
+        print('=Họ và tên: Hoàng Thanh Bình')
+        print('=Học lớp: PNV26A')
+        print('=Số điện thoại:0762530263')
+#GIẢI PHƯƠNG TRÌNH
+    elif m == 7:
+        print(' '*12,'|','{:=^87} |'.format('Giải phương trình'))
+        while True:
+            while True:
+                print('Chúng tôi có 3 chương trình')
+                print('giải phương trình bậc 1, bậc 2, bậc 3')
+                print('nhập các số để giải phương trình tương ứng')
+                try:
+                    chonchuongtrinh = int(input('Nhập chương trình bạn muốn giải phương trình'))
+                    if chonchuongtrinh in [1,2,3]:
+                        break
+                    else:
+                        print('Chúng tôi chỉ có 3 chương trình')
+                except ValueError:
+                    print('Vui lòng nhập số')
+            while True:
+                try:
+                    if chonchuongtrinh == 1:
+                        a = int(input('Nhập hê số a:'))
+                        b = int(input('Nhập hệ số b:'))
+                        phuongTrinhBac1(a,b)
+                        break
+                except ValueError:
+                    print('Nhập ký tự số')
+                try:
+                    if chonchuongtrinh == 2:
+                        a = float(input('Nhập hệ số a:'))
+                        b = float(input('Nhập hệ số b:'))
+                        c = float(input('Nhập hệ số c:'))
+                        phuongTrinhBac2(a,b,c)
+                        break
+                except ValueError:
+                    print('Nhập ký tự số')
+                try:
+                    if chonchuongtrinh == 3:
+                        a = float(input('Nhập hệ số a:'))
+                        b = float(input('Nhập hệ số b:'))
+                        c = float(input('Nhập hệ số c:'))
+                        d = float(input('Nhập hệ số d:'))
+                        phuongTrinhBac3(a,b,c,d)
+                        break
+                except ValueError:
+                    print('Nhập ký tự số')
+            con = input('Bạn có muốn dừng chương trình không, nhấn X để dừng')
+            if con == 'X' or con == "x":
+                break
+#DỪNG CHƯƠNG TRÌNH
+    elif m == 8:
+        print('Cảm ơn bạn đã sử dụng chương trình của tôi!!!!')
+        break
+                    
+
+
+        
+
+
+
+
+
+
+                    
+                
